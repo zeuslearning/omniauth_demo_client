@@ -16,9 +16,9 @@
       <% user = User.find_by_uid(comment.uid)%>
       <td class='username'><%= user.first_name%> <%= user.last_name %></td>
       <td>
-          <span><%= comment.body %></span>
+          <span style="float:left"><%= comment.body %></span>
           <% if user.uid == @current_user.uid %>
-            <span><%= link_to 'Destroy', destroy_comment_path, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+            <span id='comment_delete_button'><%= button_to "- Delete", {:controller => "comments", :action => 'destroy', :id => comment.id}, :confirm => "Are you sure?", :method => :delete %></span>
           <%end%>
       </td>
   </tr>

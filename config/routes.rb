@@ -10,6 +10,9 @@ Devisedemo::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  resources :comments do
+    
+  end
   root :to => 'posts#index'
 
   
