@@ -1,3 +1,4 @@
+<%= link_to 'home', '/' %>
 <p>
   <b>Title:</b>
   <%=h @post.title %>
@@ -8,3 +9,32 @@
   <b>Body:</b>
   <%=h @post.body %>
 </p>
+<% @comments = @post.comments %>
+<table class='comment_container'>
+<% @comments.each do |comment| %>
+  <tr class='verticle_align_top'>
+      <% user = User.find_by_uid(comment.uid)%>
+      <td class='username'><%= user.first_name%> <%= user.last_name %></td>
+      <td>
+          <span><%= comment.body %></span>
+          <% if user.uid == @current_user.uid %>
+            <span><%= link_to 'Destroy', destroy_comment_path, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          <%end%>
+      </td>
+  </tr>
+<% end %>
+  <tr class='verticle_align_top'>
+      <td class="username"><%= @current_user.first_name%> <%= @current_user.last_name %></td>
+      <td>
+          <%= form_for([@post, @post.comments.build]) do |f| %>
+            <div class="field" rows="4">
+                <%= f.text_area :body ,:size =>"50*4" %>
+            </div>
+            <div class="actions">
+                <%= f.submit %>
+            </div>
+          <% end %>
+      </td>
+  </tr>
+</table>
+

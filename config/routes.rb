@@ -6,8 +6,10 @@ Devisedemo::Application.routes.draw do
 
   # Custom logout
   match '/logout', :to => 'user_sessions#destroy'
-
-  resources :posts, :has_many => :comments
+  match '/destroy_comment', :to =>'comment#destroy'
+  resources :posts do
+    resources :comments
+  end
   root :to => 'posts#index'
 
   
