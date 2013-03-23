@@ -12,7 +12,12 @@
     <p>
       <% last_updated_by = User.find(@post.last_updated_by_uid)%>
       <b>Last Updated By:</b>
-      <%= last_updated_by.full_name %>
+      <span>
+          <%= last_updated_by.full_name %>
+          <% if last_updated_by.uid == @current_user.uid %>
+          (You)
+          <%end%>
+      </span>
     </p>
 <%end%>
 <p>
