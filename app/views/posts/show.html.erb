@@ -1,10 +1,20 @@
 <%= link_to 'home', '/' %>
+<% author = User.find(@post.uid)%>
 <p>
   <b>Title:</b>
   <%=h @post.title %>
-
 </p>
-
+<p>
+  <b>Author:</b>
+  <%= author.full_name %>
+</p>
+<% unless @post.last_updated_by_uid.nil? %>
+    <p>
+      <% last_updated_by = User.find(@post.last_updated_by_uid)%>
+      <b>Last Updated By:</b>
+      <%= last_updated_by.full_name %>
+    </p>
+<%end%>
 <p>
   <b>Body:</b>
   <%=h @post.body %>
