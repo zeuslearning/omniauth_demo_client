@@ -5,6 +5,7 @@ Devisedemo::Application.routes.draw do
   match '/auth/failure', :to => 'user_sessions#failure'
 
   # Custom logout
+  match '/show_post', :to => 'posts#index'
   match '/logout', :to => 'user_sessions#destroy'
   match '/destroy_comment', :to =>'comment#destroy'
   resources :posts do
@@ -13,7 +14,7 @@ Devisedemo::Application.routes.draw do
   resources :comments do
     
   end
-  root :to => 'posts#index'
+  root :to => 'home#index'
 
   
   

@@ -22,7 +22,7 @@ class UserSessionsController < ApplicationController
     session[:user_id] = omniauth
 
     flash[:notice] = "Successfully logged in"
-    redirect_to root_path
+    redirect_to show_post_path
   end
 
   # Omniauth failure callback
