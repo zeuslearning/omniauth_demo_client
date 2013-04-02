@@ -15,8 +15,8 @@
         <% user = User.find(post.uid) %>
         <td><%= post.title %></td>
         <td class='indexpostbody'><%= post.body %></td>
-        <td class='verticle_align_top'><%= link_to 'Show', post %></td>
-        <td align="right">
+        <td class='verticle_align_top' align="right">
+            <%= link_to 'Show', post %>
         <% if user.uid == current_user.uid %>
             <%= link_to 'Edit', edit_post_path(post) %>
             <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
