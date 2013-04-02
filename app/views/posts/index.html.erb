@@ -1,14 +1,10 @@
-<%= link_to 'logout', '/logout'%>
-<span><%= @current_user.first_name %> <%= @current_user.last_name %></span>
 <h1>Listing posts</h1>
 <table border="1">
   <thead>
       <tr>
         <th>Title</th>
         <th align="left">Body</th>
-        <th> </th>
-        <th> </th>
-        <th> </th>
+        <th>Actions</th>
         <th>Created By</th>
       </tr>
   </thead>
@@ -16,17 +12,16 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr class='verticle_align_top'>
-        <% user = User.find(post.uid)%>
+        <% user = User.find(post.uid) %>
         <td><%= post.title %></td>
         <td class='indexpostbody'><%= post.body %></td>
         <td class='verticle_align_top'><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <% if user.uid == @current_user.uid %>
-            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-            <td></td>
+        <td align="right">
+        <% if user.uid == current_user.uid %>
+            <%= link_to 'Edit', edit_post_path(post) %>
+            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
-        <td><%= user.first_name%> <%= user.last_name %></td>
+        <td><%= user.first_name %> <%= user.last_name %></td>
       </tr>
     <% end %>
   </tbody>
