@@ -1,9 +1,19 @@
 class PostsController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required,:except => :sign_in_provider
+
   
   # GET /posts
   # GET /posts.json
-  
+  def sign_in_provider
+    respond_to do |format  |
+        format.html  {
+          redirect_to '/auth/concordid'
+        }
+        format.json {
+          render :json => { 'error' => 'Access Denied' }.to_json
+        }
+    end
+  end
   def index
     @posts = Post.all
     

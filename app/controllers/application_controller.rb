@@ -2,14 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   def login_required
     if !current_user
-      respond_to do |format|
-        format.html  {
-          redirect_to '/auth/concordid'
-        }
-        format.json {
-          render :json => { 'error' => 'Access Denied' }.to_json
-        }
-      end
+        redirect_to '/'
     end
   end
 

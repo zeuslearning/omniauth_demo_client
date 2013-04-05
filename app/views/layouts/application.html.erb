@@ -13,7 +13,7 @@
         <%= link_to 'Sign out', '/logout' %>
         <span><%= current_user.first_name %> <%= current_user.last_name %></span>
     <% else %>
-        <%= link_to 'Sign in', '/show_post'%>
+        <%= link_to 'Sign in', '/sign_in_provider'%>
     <% end %>
     
 <%= yield %>
